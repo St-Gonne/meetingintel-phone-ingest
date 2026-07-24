@@ -1,0 +1,45 @@
+[build-system]
+requires = ["setuptools>=70"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "meetingintel-phone-ingest"
+version = "0.1.0"
+description = "Safely retrieve, settle, review, and normalize segmented phone recordings."
+readme = "README.md"
+requires-python = ">=3.11"
+license = {text = "Apache-2.0"}
+authors = [
+  {name = "Sharan Tulsiani"}
+]
+keywords = [
+  "audio",
+  "local-first",
+  "meeting-recordings",
+  "rclone",
+  "voice-recorder",
+]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Environment :: Console",
+  "License :: OSI Approved :: Apache Software License",
+  "Operating System :: MacOS",
+  "Operating System :: POSIX :: Linux",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.11",
+  "Topic :: Multimedia :: Sound/Audio",
+]
+dependencies = []
+
+[project.urls]
+Homepage = "https://github.com/sharantulsiani-ui/meetingintel-phone-ingest"
+Issues = "https://github.com/sharantulsiani-ui/meetingintel-phone-ingest/issues"
+
+[project.scripts]
+mi-phone = "meetingintel_phone.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

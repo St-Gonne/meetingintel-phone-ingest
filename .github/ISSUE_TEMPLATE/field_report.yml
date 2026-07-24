@@ -1,0 +1,33 @@
+name: Field report
+description: Tell us how the toolkit worked with a recorder or storage backend.
+title: "[Field report]: "
+labels: ["field-report"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Please share no recordings, transcript content, names, credentials,
+        account identifiers, or private paths.
+  - type: input
+    id: platform
+    attributes:
+      label: Platform
+      placeholder: macOS 15 or Ubuntu 24.04
+    validations:
+      required: true
+  - type: input
+    id: recorder
+    attributes:
+      label: Recorder or filename format
+      placeholder: Generic Android recorder, YYYY_MM_DD_HH_MM_SS.m4a
+  - type: input
+    id: backend
+    attributes:
+      label: rclone backend
+      placeholder: Google Drive
+  - type: textarea
+    id: result
+    attributes:
+      label: What worked or failed?
+    validations:
+      required: true

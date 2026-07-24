@@ -1,0 +1,43 @@
+name: Bug report
+description: Report a sanitized fetch, settlement, review, or normalization failure.
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Do not attach recordings, credentials, remote names, account identifiers,
+        personal names, or private paths.
+  - type: dropdown
+    id: stage
+    attributes:
+      label: Stage
+      options:
+        - Fetch
+        - Settlement
+        - Status
+        - Chunk review
+        - Normalization
+        - Installation
+    validations:
+      required: true
+  - type: input
+    id: platform
+    attributes:
+      label: Platform and Python version
+      placeholder: macOS 15, Python 3.13
+    validations:
+      required: true
+  - type: textarea
+    id: behavior
+    attributes:
+      label: What happened?
+      description: Sanitize all output before pasting it.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What did you expect?
+    validations:
+      required: true

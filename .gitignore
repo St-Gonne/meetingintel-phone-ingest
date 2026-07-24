@@ -1,0 +1,26 @@
+.DS_Store
+__pycache__/
+*.py[cod]
+.venv/
+dist/
+build/
+*.egg-info/
+.coverage
+.pytest_cache/
+
+# Runtime data and recordings
+.mi-phone/
+staging/
+canonical/
+*.m4a
+*.mp3
+*.mp4
+*.wav
+*.aac
+*.ogg
+*.webm
+
+# Credentials and local configuration
+.env
+*.env
+secrets/

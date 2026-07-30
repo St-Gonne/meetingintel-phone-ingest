@@ -44,15 +44,19 @@ your transcription pipeline
 
 ## Status
 
-Version 0.1 is an alpha extraction from a private system used for real
+Version 0.1 is an alpha release extracted from a private system used for real
 in-person meeting recordings.
 
-- macOS: supported and tested
-- Linux: core workflow is expected to work; CI validation is required before
-  it is described as supported
+- macOS: supported and tested, including a fresh-account Drive clean-room gate
+- Linux: deterministic workflow is validated in CI; real Drive field validation
+  remains pending
 - Windows: not currently supported
 - scheduler: deliberately omitted from 0.1; invoke `mi-phone fetch` from your
   scheduler of choice after the manual workflow is proven
+
+The independent Drive field gate is defined in
+[CLEAN_ROOM_VALIDATION.md](CLEAN_ROOM_VALIDATION.md). The reference macOS
+validation passed before the v0.1.0 tag.
 
 The filename parser currently expects recorder names beginning with:
 
@@ -94,10 +98,14 @@ your cloud credentials.
 ```sh
 git clone https://github.com/sharantulsiani-ui/meetingintel-phone-ingest.git
 cd meetingintel-phone-ingest
-python3 -m venv .venv
+python3.11 -m venv .venv
 source .venv/bin/activate
 python -m pip install -e .
 ```
+
+If your `python3 --version` already reports Python 3.11 or newer, `python3` may
+be used instead. Do not rely on the macOS system Python without checking its
+version.
 
 ## Configure
 

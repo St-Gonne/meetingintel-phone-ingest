@@ -4,13 +4,14 @@
 
 I use recordings from my phone as part of a private meeting-intelligence
 system. My recording app splits long meetings into 15-minute files and sends
-them to Drive. That sounds simple. It wasn't.
+them to Drive. That sounds simple to me.. to the AI setups I was using, it 
+looked like voodoo.
 
-Files could arrive late, look ready before the upload had finished, or sit
-close enough together that the computer had to decide whether they were one
-meeting or two. I did not want that decision hidden inside an automated
-pipeline. I wanted the system to check the files, show me what it knew, and ask
-me when it wasn't sure.
+Files could easily arrive late but look ready before the upload had finished, or sit
+close enough together in time that the System had to decide whether they were one
+meeting or two. I need to make sure that decision wasn;t hidden inside an automated
+pipeline. I wanted the system to check the files, show me what it knew and ask
+me when it wasn't sure. Took more work than I thought, but looks like it works now.
 
 This repository is the part that gets those recordings safely onto a computer
 and ready for whichever transcription tool comes next. I designed it around
@@ -18,7 +19,7 @@ the problems I actually ran into. Codex built it and tested it with me.
 
 I'm sharing it because other people may have the same dull but important
 problem. If your recorder behaves differently, or this misses an edge case,
-I'd like to hear about it.
+please tell me more!
 
 ## Why this may be useful to you
 
@@ -52,7 +53,8 @@ It does **not** transcribe, summarize, identify speakers, or call an AI model.
 
 In practical terms, it handles the awkward step before transcription: getting
 segmented phone recordings onto a computer without accepting partial uploads,
-creating duplicates, or guessing which chunks belong together.
+creating duplicates, or guessing which chunks belong together. I've created my
+meetingintel tool for that.
 
 ## What can go wrong
 

@@ -1,5 +1,17 @@
 # Contributor roadmap
 
+## A note from Sharan
+
+I want this repository to be useful on its own, not something people can only
+look at. You should not need to understand my private system before improving a
+small part of this one.
+
+If it works with your recorder, tell us. If it does not, a focused test or fix
+is more useful than a broad rewrite. The issues are written to make that kind
+of contribution easier.
+
+## What Codex is maintaining
+
 This roadmap identifies useful, independently testable work. It is not a
 promise that every item will ship, and an issue's acceptance criteria remain
 the authority for a specific pull request.

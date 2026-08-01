@@ -235,6 +235,26 @@ python -m compileall -q src tests
 
 All committed fixtures are synthetic. See [CONTRIBUTING.md](CONTRIBUTING.md).
 
+## Help build the reliability layer
+
+This project is deliberately smaller than a meeting assistant. The current
+contributor roadmap focuses on the unreliable boundary between a recorder and
+downstream transcription: recorder filename formats, transfer diagnostics,
+portable field validation, machine-readable status, and additional audio
+containers.
+
+Start with a labelled
+[`good first issue`](https://github.com/sharantulsiani-ui/meetingintel-phone-ingest/labels/good%20first%20issue)
+or [`help wanted`](https://github.com/sharantulsiani-ui/meetingintel-phone-ingest/labels/help%20wanted)
+task. Every contributor issue should include acceptance criteria, non-goals,
+synthetic-test expectations, and an exact verification command. See the
+[contributor roadmap](docs/CONTRIBUTOR_ROADMAP.md) for the planned extension
+surfaces and boundaries.
+
+Useful field reports are also welcome even when you do not plan to write code.
+Please never attach real recordings, transcripts, credentials, names, account
+identifiers, or private paths.
+
 ## Relationship to MeetingIntel
 
 This is a standalone extraction from the phone-ingestion boundary of

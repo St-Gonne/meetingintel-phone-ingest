@@ -1,0 +1,54 @@
+name: Feature request
+description: Propose a bounded improvement to the recorder-to-canonical-audio workflow.
+title: "[Feature]: "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Keep proposals within the reliability layer before transcription. Do not
+        attach recordings, transcripts, credentials, names, account identifiers,
+        remote object identifiers, or private paths.
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What unreliable or manual step are you trying to improve?
+    validations:
+      required: true
+  - type: textarea
+    id: outcome
+    attributes:
+      label: Desired outcome
+      description: Describe observable behaviour rather than an implementation.
+    validations:
+      required: true
+  - type: dropdown
+    id: surface
+    attributes:
+      label: Area
+      options:
+        - Recorder filename or format
+        - Fetch or settlement
+        - Diagnostics
+        - Chunk review
+        - Canonical output or provenance
+        - Installation or portability
+        - Documentation
+        - Other bounded intake concern
+    validations:
+      required: true
+  - type: textarea
+    id: synthetic-proof
+    attributes:
+      label: Synthetic verification idea
+      description: How could this be tested without real voices or meeting data?
+    validations:
+      required: true
+  - type: checkboxes
+    id: boundaries
+    attributes:
+      label: Scope confirmation
+      options:
+        - label: This request does not require transcription, summarization, speaker identification, telemetry, or private data.
+          required: true

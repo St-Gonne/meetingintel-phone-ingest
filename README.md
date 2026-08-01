@@ -1,8 +1,46 @@
 # MeetingIntel Phone Ingest
 
-A local-first command-line tool for the awkward step before transcription:
-getting segmented phone recordings onto a computer without accepting partial
-uploads, duplicating files, or guessing which chunks belong together.
+## A note from Sharan
+
+I use recordings from my phone as part of a private meeting-intelligence
+system. My recording app splits long meetings into 15-minute files and sends
+them to Drive. That sounds simple. It wasn't.
+
+Files could arrive late, look ready before the upload had finished, or sit
+close enough together that the computer had to decide whether they were one
+meeting or two. I did not want that decision hidden inside an automated
+pipeline. I wanted the system to check the files, show me what it knew, and ask
+me when it wasn't sure.
+
+This repository is the part that gets those recordings safely onto a computer
+and ready for whichever transcription tool comes next. I designed it around
+the problems I actually ran into. Codex built it and tested it with me.
+
+I'm sharing it because other people may have the same dull but important
+problem. If your recorder behaves differently, or this misses an edge case,
+I'd like to hear about it.
+
+## Why this may be useful to you
+
+This could help if you:
+
+- record long interviews, research sessions or in-person meetings that arrive
+  as several files;
+- collect voice notes or field recordings and transcribe them later;
+- use a local transcription tool but still sort and verify its input by hand;
+- are building a private knowledge or meeting-notes workflow and need a clear
+  record of where each audio file came from;
+- are testing a speech-to-text system and want repeatable input instead of a
+  folder full of uncertain recordings.
+
+It can sit before tools built with
+[Whisper](https://github.com/openai/whisper), or before applications that import
+local audio, such as [Muesli](https://github.com/Muesli-HQ/muesli). It does not
+replace those tools. It prepares the recording they receive. If your
+transcription engine needs a different audio format, convert the canonical
+file after this intake step.
+
+## What Codex built
 
 `mi-phone` retrieves recordings through an existing
 [rclone](https://rclone.org/) remote, verifies them, waits for two unchanged
@@ -12,7 +50,11 @@ audio folders that can feed any transcription system.
 
 It does **not** transcribe, summarize, identify speakers, or call an AI model.
 
-## Why this exists
+In practical terms, it handles the awkward step before transcription: getting
+segmented phone recordings onto a computer without accepting partial uploads,
+creating duplicates, or guessing which chunks belong together.
+
+## What can go wrong
 
 Phone recorder workflows become unreliable at the boundary between recorder,
 cloud storage, and local processing:
@@ -234,6 +276,26 @@ python -m compileall -q src tests
 ```
 
 All committed fixtures are synthetic. See [CONTRIBUTING.md](CONTRIBUTING.md).
+
+## Help build the reliability layer
+
+This project is deliberately smaller than a meeting assistant. The current
+contributor roadmap focuses on the unreliable boundary between a recorder and
+downstream transcription: recorder filename formats, transfer diagnostics,
+portable field validation, machine-readable status, and additional audio
+containers.
+
+Start with a labelled
+[`good first issue`](https://github.com/sharantulsiani-ui/meetingintel-phone-ingest/labels/good%20first%20issue)
+or [`help wanted`](https://github.com/sharantulsiani-ui/meetingintel-phone-ingest/labels/help%20wanted)
+task. Every contributor issue should include acceptance criteria, non-goals,
+synthetic-test expectations, and an exact verification command. See the
+[contributor roadmap](docs/CONTRIBUTOR_ROADMAP.md) for the planned extension
+surfaces and boundaries.
+
+Useful field reports are also welcome even when you do not plan to write code.
+Please never attach real recordings, transcripts, credentials, names, account
+identifiers, or private paths.
 
 ## Relationship to MeetingIntel
 

@@ -1,5 +1,9 @@
 # MeetingIntel Phone Ingest
 
+[![CI](https://github.com/sharantulsiani-ui/meetingintel-phone-ingest/actions/workflows/ci.yml/badge.svg)](https://github.com/sharantulsiani-ui/meetingintel-phone-ingest/actions/workflows/ci.yml)
+[![License: Apache 2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](LICENSE)
+[![Python](https://img.shields.io/badge/python-3.11%2B-blue.svg)](pyproject.toml)
+
 ## A note from Sharan
 
 I use recordings from my phone as part of a private meeting-intelligence

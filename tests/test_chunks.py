@@ -41,6 +41,24 @@ class ChunkTests(unittest.TestCase):
         value = parse_start("2026_07_24_12_34_56.m4a", "Asia/Kolkata")
         self.assertEqual("2026-07-24T12:34:56+05:30", value.isoformat())
 
+    def test_impossible_calendar_date_is_rejected(self) -> None:
+        with self.assertRaises(IntakeError):
+            parse_start("2026_02_30_12_00_00.m4a", "UTC")
+
+    def test_malformed_time_is_rejected(self) -> None:
+        with self.assertRaises(IntakeError):
+            parse_start("2026_01_01_25_00_00.m4a", "UTC")
+
+    def test_invalid_timezone_is_rejected(self) -> None:
+        with self.assertRaises(IntakeError):
+            parse_start("2026_01_01_12_00_00.m4a", "Not/AZone")
+
+    def test_daylight_saving_transition_keeps_local_offsets(self) -> None:
+        before = parse_start("2026_03_08_01_30_00.m4a", "America/New_York")
+        after = parse_start("2026_03_08_03_30_00.m4a", "America/New_York")
+        self.assertEqual("2026-03-08T01:30:00-05:00", before.isoformat())
+        self.assertEqual("2026-03-08T03:30:00-04:00", after.isoformat())
+
     def test_three_chunks_form_one_safe_group(self) -> None:
         values = [
             segment("2026_07_24_12_00_00.m4a", 900.0, "a" * 64),

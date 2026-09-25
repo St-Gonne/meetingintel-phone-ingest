@@ -32,8 +32,8 @@ classifiers = [
 dependencies = []
 
 [project.urls]
-Homepage = "https://github.com/sharantulsiani-ui/meetingintel-phone-ingest"
-Issues = "https://github.com/sharantulsiani-ui/meetingintel-phone-ingest/issues"
+Homepage = "https://github.com/St-Gonne/meetingintel-phone-ingest"
+Issues = "https://github.com/St-Gonne/meetingintel-phone-ingest/issues"
 
 [project.scripts]
 mi-phone = "meetingintel_phone.cli:main"

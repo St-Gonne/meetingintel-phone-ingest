@@ -1,29 +1,39 @@
 # MeetingIntel Phone Ingest
 
-[![CI](https://github.com/sharantulsiani-ui/meetingintel-phone-ingest/actions/workflows/ci.yml/badge.svg)](https://github.com/sharantulsiani-ui/meetingintel-phone-ingest/actions/workflows/ci.yml)
+[![CI](https://github.com/St-Gonne/meetingintel-phone-ingest/actions/workflows/ci.yml/badge.svg)](https://github.com/St-Gonne/meetingintel-phone-ingest/actions/workflows/ci.yml)
 [![License: Apache 2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](LICENSE)
 [![Python](https://img.shields.io/badge/python-3.11%2B-blue.svg)](pyproject.toml)
 
-## A note from Sharan
+Prepare split phone recordings for transcription without guessing which files belong together.
 
-I use recordings from my phone as part of a private meeting-intelligence
-system. My recording app splits long meetings into 15-minute files and sends
-them to Drive. That sounds simple to me.. to the AI setups I was using, it 
-looked like voodoo.
+`mi-phone` downloads through rclone, checks that uploads have settled, and lets
+you review the timing before joining chunks. Original files are retained. It
+does not transcribe audio or call an AI model.
 
-Files could easily arrive late but look ready before the upload had finished, or sit
-close enough together in time that the System had to decide whether they were one
-meeting or two. I need to make sure that decision wasn;t hidden inside an automated
-pipeline. I wanted the system to check the files, show me what it knew and ask
-me when it wasn't sure. Took more work than I thought, but looks like it works now.
+I built this because my recorder splits long meetings into 15-minute files.
+Some arrived late; others looked like one meeting when they were two. I wanted
+to see the evidence before the software joined anything. I chose the workflow
+and acceptance criteria; Codex wrote the implementation.
 
-This repository is the part that gets those recordings safely onto a computer
-and ready for whichever transcription tool comes next. I designed it around
-the problems I actually ran into. Codex built it and tested it with me.
+**Start here:** [try the offline checks](#try-it-without-a-cloud-account),
+[set up your recorder](#requirements), or
+[pick a contribution](#help-build-the-reliability-layer).
 
-I'm sharing it because other people may have the same dull but important
-problem. If your recorder behaves differently, or this misses an edge case,
-please tell me more!
+## Try it without a cloud account
+
+With Python 3.11 or newer:
+
+```sh
+git clone https://github.com/St-Gonne/meetingintel-phone-ingest.git
+cd meetingintel-phone-ingest
+PYTHONPATH=src python3 -m unittest discover -s tests -v
+PYTHONPATH=src python3 -m meetingintel_phone.cli --help
+```
+
+The tests use synthetic fixtures and mocked transfer/media commands. They cover
+late uploads, duplicate prevention, chunk grouping and rejected inputs without
+rclone authorization or real recordings. This checks the code on your machine;
+it does not validate a live cloud transfer. Continue below for that setup.
 
 ## Why this may be useful to you
 
@@ -45,7 +55,7 @@ replace those tools. It prepares the recording they receive. If your
 transcription engine needs a different audio format, convert the canonical
 file after this intake step.
 
-## What Codex built
+## What the tool does
 
 `mi-phone` retrieves recordings through an existing
 [rclone](https://rclone.org/) remote, verifies them, waits for two unchanged
@@ -57,8 +67,7 @@ It does **not** transcribe, summarize, identify speakers, or call an AI model.
 
 In practical terms, it handles the awkward step before transcription: getting
 segmented phone recordings onto a computer without accepting partial uploads,
-creating duplicates, or guessing which chunks belong together. I've created my
-meetingintel tool for that.
+creating duplicates, or guessing which chunks belong together. The private MeetingIntel pipeline handles transcription separately.
 
 ## What can go wrong
 
@@ -144,7 +153,7 @@ your cloud credentials.
 ## Install from a checkout
 
 ```sh
-git clone https://github.com/sharantulsiani-ui/meetingintel-phone-ingest.git
+git clone https://github.com/St-Gonne/meetingintel-phone-ingest.git
 cd meetingintel-phone-ingest
 python3.11 -m venv .venv
 source .venv/bin/activate
@@ -291,9 +300,13 @@ downstream transcription: recorder filename formats, transfer diagnostics,
 portable field validation, machine-readable status, and additional audio
 containers.
 
-Start with a labelled
-[`good first issue`](https://github.com/sharantulsiani-ui/meetingintel-phone-ingest/labels/good%20first%20issue)
-or [`help wanted`](https://github.com/sharantulsiani-ui/meetingintel-phone-ingest/labels/help%20wanted)
+For a small code change, start with [JSON status output (#3)](https://github.com/St-Gonne/meetingintel-phone-ingest/issues/3).
+For a field report, see the [Linux clean-room check (#8)](https://github.com/St-Gonne/meetingintel-phone-ingest/issues/8).
+A larger contribution is the [local-folder intake adapter (#10)](https://github.com/St-Gonne/meetingintel-phone-ingest/issues/10); discuss its source-identity design before coding.
+
+You can also browse a labelled
+[`good first issue`](https://github.com/St-Gonne/meetingintel-phone-ingest/labels/good%20first%20issue)
+or [`help wanted`](https://github.com/St-Gonne/meetingintel-phone-ingest/labels/help%20wanted)
 task. Every contributor issue should include acceptance criteria, non-goals,
 synthetic-test expectations, and an exact verification command. See the
 [contributor roadmap](docs/CONTRIBUTOR_ROADMAP.md) for the planned extension
@@ -306,7 +319,7 @@ identifiers, or private paths.
 ## Relationship to MeetingIntel
 
 This is a standalone extraction from the phone-ingestion boundary of
-[Meeting Intelligence System](https://github.com/sharantulsiani-ui/meeting-intelligence-system),
+[Meeting Intelligence System](https://github.com/St-Gonne/meeting-intelligence-system),
 a private-data local meeting workflow built through AI-directed engineering.
 
 The private system and its Git history are not published here. This repository
